@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'companies',
     'clients',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = [
+    'authentication.auth_backends.CompanyAuthBackend',  # Adicione seu backend customizado
+    'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
+]
