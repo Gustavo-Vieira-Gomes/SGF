@@ -58,7 +58,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,6 +128,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTHENTICATION_BACKENDS = [
-    'authentication.auth_backends.CompanyAuthBackend',  # Adicione seu backend customizado
+    'authentication.auth_backend.CompanyAuthBackend',  # Adicione seu backend customizado
     'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
 ]
