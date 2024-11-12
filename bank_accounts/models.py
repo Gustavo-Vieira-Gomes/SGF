@@ -17,6 +17,8 @@ class BankAccount(models.Model):
     account_number = models.CharField(verbose_name='Número da Conta', max_length=20)
     account_type = models.CharField(verbose_name='Tipo de conta bancária', max_length=60, choices=AccountType.choices, default=AccountType.CONTA_EMPRESARIAL)
     account_company = models.ForeignKey(verbose_name='Empresa proprietária da conta', to=Company, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['bank']
