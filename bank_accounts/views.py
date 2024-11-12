@@ -55,4 +55,4 @@ class BankAccountUpdateView(generic.UpdateView):
 class BankAccountDeleteView(generic.DeleteView):
     model = BankAccount
     template_name = 'bank_account_delete.html'
-    success_url  = reverse_lazy('bank_account_list.html')
+    success_url  = reverse_lazy('bank_account_list')
