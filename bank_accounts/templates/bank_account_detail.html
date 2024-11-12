@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h3 class="display-6">Detalhes da Conta Bancária</h3>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">{{ object.bank }}</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <td>Saldo</td>
+                            <td>Agência</td>
+                            <td>Número da Conta</td>
+                            <td>Tipo de Conta</td>
+                            <td>Adicionado em</td>
+                            <td>Última Alteração</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ object.account_balance }}</td>
+                            <td>{{ object.agency_number }}</td>
+                            <td>{{ object.account_number }}</td>
+                            <td>{{ object.get_account_type_display }}</td>
+                            <td>{{ object.created_at }}</td>
+                            <td>{{ object.updated_at }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'bank_account_list' %}" class="btn btn-secondary mt-3">Voltar</a>
+</div>
+
+{% endblock %}
