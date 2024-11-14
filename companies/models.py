@@ -13,3 +13,16 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class CostCenter(models.Model):
+    name = models.CharField(verbose_name='Nome do Centro de Custo', max_length=100, unique=True)
+    description = models.TextField(verbose_name='Descrição do Centro de Custo e suas atribuições', blank=True, null=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name='Compania Associada')
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Centros de Custo'
+
+    def __str__(self):
+        return self.name
