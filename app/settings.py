@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'authentication',
     'suppliers',
     'bank_accounts',
+    'transactions',
 ]
 
 MIDDLEWARE = [
