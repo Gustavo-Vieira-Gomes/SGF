@@ -1,5 +1,6 @@
 from django.views import generic
 from .models import TransactionCategory
+from .models import Transaction
 from .forms import TransactionCategoryForm
 from authentication.models import UserCompany
 from django.shortcuts import redirect
@@ -15,10 +16,23 @@ class TransactionCategoryListView(generic.ListView):
         queryset = super().get_queryset()
 
         transaction_type = self.request.GET.get('transaction_type', '2')
+        description = self.request.GET.get('description')
+        bank_account = self.request.GET.get('bank_account')
+        cost_center = self.request.GET.get('cost_center')
+
 
         if transaction_type != '2':
             transaction_type = int(transaction_type)
             queryset = queryset.filter(transaction_type=transaction_type)
+        
+        if description:
+            queryset = queryset.filter(description__icontains=description)
+        
+        if bank_account:
+            queryset = queryset.filter(bank_account__icontains=bank_account)
+
+        if cost_center:
+            queryset = queryset.filter(cost_center__icontains=cost_center)
         
         return queryset
 
@@ -45,3 +59,32 @@ class TransactionCategoryDeleteView(generic.DeleteView):
     model = TransactionCategory
     template_name = 'transaction_category_delete.html'
     success_url = reverse_lazy('transaction_category_list')
+
+
+class TransactionListView(generic.ListView):
+    model = Transaction
+    template_name = 'transaction_list.html'
+    context_object_name= 'transactions'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        transaction_type = self.request.GET.get('transaction_type', '2')
+        description = self.request.GET.get('description')
+        bank_account = self.request.GET.get('bank_account')
+        cost_center = self.request.GET.get('cost_center')
+
+        if transaction_type != '2':
+            transaction_type = int(transaction_type)
+            queryset = queryset.filter(transaction_type=transaction_type)
+
+        if description:
+            queryset = queryset.filter(description__icontains=description)
+     
+        if bank_account:
+            queryset = queryset.filter(bank_account__icontains=bank_account)
+
+        if cost_center:
+            queryset = queryset.filter(cost_center__icontains=cost_center)            
+
+        return queryset
